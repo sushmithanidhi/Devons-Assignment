@@ -1,0 +1,50 @@
+{%  extends 'layout.html.twig' %}
+{#{% block stylesheets %}#}
+{#    {{ parent() }}#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+{#{% endblock %}#}
+{#{% block sidebar %}#}
+{#    {%  include "sidebar.html.twig" %}#}
+{#{% endblock %}#}
+{% block content %}
+    <div class="listContainer">
+    <h1 class="ui aligned blue header" style="color:#007bff">{{ 'server.upload.title'|trans }}</h1>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="ui green icon message">
+                    <i class="info circle icon"></i>
+                    <div class="content">
+                        <p>{{ flashMessage }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="ui red icon message">
+                    <i class="error circle icon"></i>
+                    <div class="content">
+                        <p>{{ flashMessage }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="panel panel-default">
+                <form action="" method="post" class="form-horizontal admin-form" novalidate="novalidate" enctype="multipart/form-data">
+                    <div class="panel-body">
+                        <fieldset>
+                            {{ form_widget(form) }}
+                        </fieldset>
+                    </div><br/><br/>
+                        <div class="panel-footer">
+                            <button type="submit" name="upload" value="upload"
+                                    class="btn btn-success">
+
+                                <i class="fa fa-upload"></i> Upload
+                            </button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

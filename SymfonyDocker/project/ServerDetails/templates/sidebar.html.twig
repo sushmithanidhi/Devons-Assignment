@@ -1,0 +1,25 @@
+
+{#<!-- SIDEBAR -->#}
+{#<div class="sidebar">#}
+{#    <ul class="sidebar-nav">#}
+{#        <li><a href="{{ path("server_list") }}"><i class="fa fa-home"></i> <span>Server list</span></a></li>#}
+{#        <li><a href="{{ path("upload_file") }}"><i class="fa fa-home"></i> <span>Upload files</span></a></li>#}
+
+{#    </ul>#}
+{#</div>#}
+
+<div class="tab">
+    <button ><a href="{{ path('server_list') }}">Server List</a></button>
+    <button > <a href="{{ path('upload_file') }}"> Upload file </a></button>
+</div>
+
+{#<div id="London" class="tabcontent">#}
+{#    {{ render(controller(#}
+{#        'App\\Controller\\ServerDataController:listAction'#}
+{#    )) }}#}
+{#</div>#}
+
+{#<div id="Paris" class="tabcontent">#}
+{#{{ render(controller(#}
+{#    'App\\Controller\\ServerDataController:uploadAction'#}
+{#)) }}#}

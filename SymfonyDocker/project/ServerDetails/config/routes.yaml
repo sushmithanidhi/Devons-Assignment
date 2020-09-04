@@ -1,0 +1,27 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+index:
+   path: /
+   controller: App\Controller\ServerDataController::index
+
+server_list:
+   path: /server-lists
+   controller: App\Controller\ServerDataController::listAction
+
+upload_file:
+   path: /upload-files
+   controller: App\Controller\ServerDataController::uploadAction
+
+api_server_details:
+   path: /api/server_details
+   methods: [GET,POST]
+   controller: App\Controller\ServerDataController::getServerDetails
+
+selected_server_details:
+   path: /selected_server_details
+   methods: [GET,POST]
+   controller: App\Controller\ServerDataController::getSelectedServerDetails
+
+

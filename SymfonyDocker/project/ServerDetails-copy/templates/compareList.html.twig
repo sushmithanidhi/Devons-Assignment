@@ -1,0 +1,31 @@
+{%  if serverDetails is not empty %}
+<table class="ui compact blue sortable table">
+    <thead>
+    <tr>
+        <th>{{ 'server.list.model'|trans }}</th>
+        <th>{{ 'server.list.RAM'|trans }}</th>
+        <th>{{ 'server.list.HDD'|trans }}</th>
+        <th>{{ 'server.list.location'|trans }}</th>
+        <th>{{ 'server.list.price'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for serverDetails in serverDetails %}
+        <tr>
+            <td>{{ serverDetails.model }}</td>
+            <td>{{ serverDetails.RAM }}</td>
+            <td>{{ serverDetails.HDD }}</td>
+            <td>{{ serverDetails.location }}</td>
+            <td>{{ serverDetails.price }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="ui red icon message">
+        <i class="info circle icon"></i>
+        <div class="content">
+            <p> No data found</p>
+        </div>
+    </div>
+{% endif %}

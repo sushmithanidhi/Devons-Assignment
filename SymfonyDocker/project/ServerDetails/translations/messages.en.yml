@@ -1,0 +1,13 @@
+server:
+  list :
+    title :  Server Details
+    model : Model
+    RAM : RAM
+    HDD : HDD
+    location : Location
+    price : Price
+  ui:
+    clear_filters: Clear
+    filter : Filter
+  upload:
+    title : Upload File

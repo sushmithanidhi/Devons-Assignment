@@ -1,0 +1,150 @@
+{%  extends "layout.html.twig" %}
+{%  block content %}
+    <div class="listContainer">
+    {%  set path = path("server_list") %}
+    <h1 class="ui aligned header"  style="color:#007bff">{{ 'server.list.title'|trans }}</h1>
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="ui red icon message">
+            <i class="info circle icon"></i>
+            <div class="content">
+                <p>{{ flashMessage }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+    {%  if error is not defined %}
+        <div>
+            <div class="ui hidden divider"></div>
+            <div class="ui styled fluid accordion">
+                <div class="title active">
+                    <i class="dropdown icon"></i>
+                    {{ 'Filters'|trans }}
+                </div>
+                <div class="content active">
+                    <div class="field">
+                        {# <label >Storage range(0-72TB):</label>
+                            <input id='storageTextFilter' style='width:50px' type='text' value='0TB'/>
+                            <input id='storeRange' style='width:30%' type="range" min="0" max="72" value="0"> #}
+                        <label>RAM : </label>
+                            <select id="getRamFilter" class='ui-dropdown' >
+                                <option value="">Select</option>
+
+                                {% for dropdownOption in types %}
+                                    {%  set selected = '' %}
+                                    {%  if  selectedFilter is not empty %}
+                                        {%  if dropdownOption == selectedFilter["selectedRam"] %}{%  set selected = "selected = 'selected'" %}{% endif %}
+                                    {% endif %}
+                                    <option value="{{ dropdownOption}}" {{ selected }}>{{ dropdownOption }}</option>
+                                {% endfor %}
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label> HDD : </label>
+                            <select id="getHDDFilter" class='ui-dropdown' >
+                                <option value="">Select</option>
+
+                                {% for dropdownOption in hardDrive %}
+                                    {%  set selected = '' %}
+                                    {%  if  selectedFilter is not empty %}
+                                        {%  if dropdownOption == selectedFilter["selectedhdd"] %}{%  set selected = "selected = 'selected'" %}{% endif %}
+                                    {% endif %}
+                                    <option value="{{ dropdownOption}}" {{ selected }}>{{ dropdownOption }}</option>
+                                {% endfor %}
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
+                            <label > Location:</label>
+                            <select id="getLocationFilter" class='ui-dropdown' >
+                                <option value="">Select</option>
+
+                                {% for dropdownOption in location %}
+                                    {%  set selected = '' %}
+                                    {%  if  selectedFilter is not empty %}
+                                        {%  if dropdownOption == selectedFilter["selectedLocation"] %}{%  set selected = "selected = 'selected'" %}{% endif %}
+                                    {%  endif %}
+                                    <option value="{{ dropdownOption}}" {{ selected }}> {{ dropdownOption }}</option>
+                                {% endfor %}
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div>
+
+                        <br/><br/><br/>
+                    </div>
+                    <button style='font-size:12px;' class="ui blue labeled icon button" type="submit" id="filterData">
+                        <i class="icon search"></i> {{'server.ui.filter'|trans }}
+                    </button>
+                    <a style='font-size:12px;' class="ui grey labeled icon button" href="{{ path }}">
+                        <i class="icon remove"></i> {{ 'server.ui.clear_filters'|trans }}
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        {%  if dataCount %} <span style="float:right">Please select min 2 and max 6 records to compare.</span> {% endif %}
+        <br/>
+
+    
+    {%  if dataCount %}
+        <div class="compare" >
+            <p class=" singleLine"> Total no. of records :  {{ dataCount  }}</p>
+            <button  class="button singleLine" id="compareData" type="submit" disabled><i class="arrow search"></i>Compare</button></div>
+    {% endif %}
+    <div id="tableContent">
+    {%  if serverDetails is not empty %}
+        <table class="ui compact blue sortable table">
+            <thead>
+            <tr>
+                <th>
+                    <button type="button" class="btn btn-info clearCheckbox"><a >Clear</a></button>
+                </th>
+                <th>{{ 'server.list.model'|trans }}</th>
+                <th>{{ 'server.list.RAM'|trans }}</th>
+                <th>{{ 'server.list.HDD'|trans }}</th>
+                <th>{{ 'server.list.location'|trans }}</th>
+                <th>{{ 'server.list.price'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set ind = 0   %}
+            {% for serverDetails in serverDetails %}
+                <tr>
+                    {% set rowId = serverDetails.model ~ '|' ~ serverDetails.RAM ~ '|'~ serverDetails.HDD  ~ '|' ~ serverDetails.location ~ '|' ~ serverDetails.price %}
+                    <td>
+                        <input type="checkbox" class="editor-active selectEntry" id="{{ serverDetails.uniqueId }}" value="{{ serverDetails.uniqueId }}">
+                    </td>
+                    <td>{{ serverDetails.model }}</td>
+                    <td>{{ serverDetails.RAM }}</td>
+                    <td>{{ serverDetails.HDD }}</td>
+                    <td>{{ serverDetails.location }}</td>
+                    <td>{{ serverDetails.price }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if total_pages > 1 %}
+            <div class="pagination">
+                {%  set limit = 10 %}
+                <ul class="pagination">
+                    <li class={% if(startLimit <= 1) %}{{ 'disabled' }} {% endif %}>
+                    <a {% if(startLimit <= 1) %}{{ '' }} {% else %} onclick="updatePage({{ startLimit - limit}})" {%  endif %}> Prev </a>
+                </li>
+                {% for pageLimit in startLimit..lastLimit %}
+                    {% if(pageLimit == total_pages) %}{% set label = total_pages %} {% else %} {% set label = pageLimit %} {%  endif %}
+                    {% set disableClass ='' %}
+                    {% if(page == pageLimit)  %} {%  set disableClass = 'disabled' %}  {%  endif %}
+                    <li id="new" class = {{ disableClass }} ><a id="new" onclick="updatePage({{label}})"> {{ label }} </a></li>
+                {% endfor %}
+                    {% if total_pages != lastLimit %}
+                        <li><a onclick="updatePage({{lastLimit +1}})"> Next </a></li>
+                    {% endif %}
+                </ul>
+            </div>
+                <p style="position: relative;left:10px;bottom:40px"> <a href="{{ "?page="~ 1}}">{{ 1 }}</a> to <a href="{{ "?page="~ total_pages}}">{{ total_pages}}</a> pages</p>
+        {% endif %}
+    {%  endif %}
+	</div>
+    </div>
+    {%  endif %}
+    <input type='hidden' id='compareDetailsUrl'  value="{{path('selected_server_details')}}" />
+    <input type='hidden' id='serverListUrl'  value="{{path('server_list')}}" />
+
+{%  endblock %}
+
+

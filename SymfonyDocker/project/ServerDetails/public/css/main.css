@@ -1,0 +1,259 @@
+.body {font-family: Arial;}
+/*table pagination*/
+/* Style the tab */
+table {
+    border-collapse: collapse;
+}
+.inline{
+    display: inline-block;
+    float: right;
+    margin: 20px 0px;
+}
+
+input, button{
+    height: 34px;
+}
+
+.pagination {
+    display: inline-block;
+}
+.pagination a {
+    font-weight:bold;
+    font-size:18px;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border:1px solid black;
+}
+.pagination a.active {
+    background-color: pink;
+}
+.pagination a:hover:not(.active) {
+    background-color: skyblue;
+}
+/*table pagination*/
+
+.compare{
+    background-color: #f1f1f1;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-weight: bold;
+    /*width: 100%;*/
+    /*display: inline-block;*/
+}
+.compare .singleLine {
+    display: inline-block;
+}
+
+.compare .button:disabled{
+    opacity: 0.65;
+}
+.pagination .disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    text-decoration: none;
+    color: black;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom-color: #5eb5e0;
+    background-color: #f1f1f1;
+    padding : 16px 16px
+}
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+.listContainer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: darkgrey;
+}
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 20px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.tag {
+    background-color: tomato;
+    color: white;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+.compare .button {
+    padding: 5px 15px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 3px #999;
+    float : right;
+}
+
+.compare .button:hover {background-color: #3e8e41}
+
+.compare .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.text {
+    font-size: 14px;
+}
+th,td{
+    font-size: 14px;
+
+}
+select {
+    width:550px;
+    padding: 0.5em;
+    border-color:#D2D3D3;
+    visibility:visible;
+    background-color:white;
+    height:38px;
+}
+#filter{
+    width:150px;
+    height:50px;
+    background-color: #1a69a4;
+    color:#fff;
+
+}
+#mailVal,#subVal,#sentVal {
+    width:550px;
+    padding: 0.5em;
+    height:38px;
+    position:absolute;
+    left:100px;
+
+}
+
+#mailVal {
+    position: inherit;
+    border: 1px solid #D2D3D3;
+}
+
+
+.pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px
+}
+
+.pagination>li {
+    display: inline
+}
+
+.pagination>li>a,.pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd
+}
+
+.pagination>li:first-child>a,.pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.pagination>li:last-child>a,.pagination>li:last-child>span {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.pagination>li>a:focus,.pagination>li>a:hover,.pagination>li>span:focus,.pagination>li>span:hover {
+    z-index: 2;
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd
+}
+
+.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7
+}
+
+.pagination>.disabled>a,.pagination>.disabled>a:focus,.pagination>.disabled>a:hover,.pagination>.disabled>span,.pagination>.disabled>span:focus,.pagination>.disabled>span:hover {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd
+}
+
+.pagination-lg>li>a,.pagination-lg>li>span {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333
+}
+
+.pagination-lg>li:first-child>a,.pagination-lg>li:first-child>span {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px
+}
+
+.pagination-lg>li:last-child>a,.pagination-lg>li:last-child>span {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px
+}
+
+.pagination-sm>li>a,.pagination-sm>li>span {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5
+}
+
+.pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px
+}
+
+.pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px
+}
